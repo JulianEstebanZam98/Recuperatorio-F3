@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useReducer } from "react";
+import Tarjeta from "./componentes/Tarjeta"
 
 import "./index.css";
 
@@ -11,28 +13,38 @@ import "./index.css";
 // MÉTODOS: App tiene dos métodos, uno para cambiar el color del tema y otro para setear la plataforma favorita.
 // PROPS: App no tiene props.
 
+const initialState = { theme: "light" };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "theme":
+      return { theme: state.theme === "light" ? "dark" : "light" };
+
+    default:
+      throw new Error();
+  }
+};
+
+
 function App() {
-  const [temaOscuro, setTemaOscuro] = useState(false);
+  const [theme, dispatch] = useReducer(reducer, initialState);
   const [favorita, setFavorita] = useState("");
 
 
-  const handleTema = () => {
-   
-  };
-
   const handleFavorita = () => {
-  
+    setFavorita (Tarjeta)
   };
 
   return (
-    <div id="App" className={temaOscuro ? "dark" : ""}>
+    <div className="App" id={theme.theme}>
       <h1>¡Bienvenidos!</h1>
       <h2>Contanos, ¿cuál es tu plataforma favorita?</h2>
       { favorita !== "" ? (<h4 className={ favorita === "Twitter" ? "tw" : favorita === "Facebook" ? "fb" : "yt" }> {favorita}</h4>) : ("")}
 
       {/* 🚩 Implementar acá */}
+      <Tarjeta handleFavorita/>
 
-      <button>Cambiar tema</button>
+      <button classsname="" onClick={()=>dispatch({type:"theme"})}>Change theme</button>
     </div>
   );
 }

@@ -8,10 +8,16 @@
 // PROPS: Item recibe como props el método para modificar la plataforma favorita y su respectivo nombre como contenido.
 
 export default function Item(props) {
+  console.log (props.repo)
+    
+  function handleClick2 () {
+    
+  }
     return (
       <>
-          // 🚩
+        <li onClick={props.handleClick}>{props.repo}</li>
       </>
     );
+
   }
   

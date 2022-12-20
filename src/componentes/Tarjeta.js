@@ -1,3 +1,5 @@
+import Item from "./Item";
+
 const listadoPlataformas = ["Twitter", "Facebook", "Youtube"];
 
 // CONSIGNAS EN TARJETA:
@@ -11,10 +13,18 @@ const listadoPlataformas = ["Twitter", "Facebook", "Youtube"];
 // MÉTODOS: Listado no requiere de métodos.
 // PROPS: Listado recibe el método heredado de App y se lo pasa a cada Item.
 
-export default function Tarjeta(props) {
+function Tarjeta(props) {
+
+  function handleClick () {
+    props.onClick.call();
+  }
   return (
     <ul>
       {/* 🚩 Implementar acá */}
+      {listadoPlataformas.map((repo)=>{
+        return <Item   handleClick= {repo}  repo={repo}/>})}
     </ul>
   );
 }
+
+export default Tarjeta 
